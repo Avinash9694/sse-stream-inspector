@@ -25,11 +25,11 @@ describe('App', () => {
     expect(screen.getByRole('heading', { name: /timeline/i })).toBeInTheDocument();
     await waitFor(() => expect(useInspector.getState().frames.length).toBeGreaterThan(0));
     const diagnosticsButton = await screen.findByRole('button', { name: /^diagnostics/i });
-    expect(within(diagnosticsButton).getByText('1E')).toBeInTheDocument();
+    expect(await within(diagnosticsButton).findByText('1E')).toBeInTheDocument();
 
     await userEvent.click(diagnosticsButton);
     const drawer = screen.getByRole('complementary', { name: /diagnostics/i });
-    expect(within(drawer).getByText(/Event spelled 2 ways/)).toBeInTheDocument();
+    expect(await within(drawer).findByText(/Event spelled 2 ways/)).toBeInTheDocument();
     expect(within(drawer).getByText(/token stream/i)).toBeInTheDocument();
   });
 
@@ -38,11 +38,13 @@ describe('App', () => {
     await waitFor(() => expect(useInspector.getState().frames.length).toBeGreaterThan(0));
     await userEvent.click(screen.getByRole('button', { name: /^diagnostics/i }));
     const drawer = screen.getByRole('complementary', { name: /diagnostics/i });
-    await userEvent.click(within(drawer).getByRole('button', { name: /Event spelled 2 ways/ }));
+    await userEvent.click(
+      await within(drawer).findByRole('button', { name: /Event spelled 2 ways/ }),
+    );
     expect(useInspector.getState().selected).toBe(1);
     expect(useInspector.getState().highlighted).toEqual([1, 2, 3, 4, 5]);
     const detail = screen.getByRole('region', { name: /frame detail/i });
-    expect(within(detail).getByText('component:')).toBeInTheDocument();
+    expect(await within(detail).findByText('component:')).toBeInTheDocument();
   });
 
   it('arrow keys move the selection through the timeline', async () => {
