@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="color-scheme" content="dark light" />
+    <title>SSE Stream Inspector</title>
+    <meta
+      name="description"
+      content="Inspect, replay and diff Server-Sent Events streams. Catches renamed events, payload-shape drift, id gaps and malformed frames in LLM chat gateways."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="SSE Stream Inspector" />
+    <meta
+      property="og:description"
+      content="Inspect, replay and diff Server-Sent Events streams. Catches renamed events and payload-shape drift."
+    />
+    <meta property="og:url" content="https://avinash9694.github.io/sse-stream-inspector/" />
+    <meta property="og:image" content="https://avinash9694.github.io/sse-stream-inspector/og.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="icon" type="image/svg+xml" href="/sse-stream-inspector/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <script>
+      (function () {
+        try {
+          var t = localStorage.getItem('sse-inspector:theme');
+          if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+        } catch (e) {
+          /* storage unavailable */
+        }
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
